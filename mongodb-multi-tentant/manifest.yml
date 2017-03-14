@@ -1,0 +1,13 @@
+---
+applications:
+- name: demo-for-multitenant-mongodb
+  memory: 1G
+  path: target/demo-mongodb-1.war 
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v3.9
+  env:
+      # Use the non-blocking /dev/urandom instead of the default to generate random numbers.
+      # This may help with slow startup times, especially when using Spring Boot.
+      JAVA_OPTS: -Djava.security.egd=file:///dev/./urandom
+      
+  services:
+  - mongodb-demo-for-multitenant-mongodb
